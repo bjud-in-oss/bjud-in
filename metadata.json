@@ -1,0 +1,7 @@
+{
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "name": "Med ljud Gemini Live text Transcriber and speach translator",
+  "description": ""
+}
