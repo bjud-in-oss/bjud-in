@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const BargeInDeepDive: React.FC = () => {
@@ -51,7 +50,7 @@ const BargeInDeepDive: React.FC = () => {
                             <div className="absolute -left-[21px] top-0 w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
                             <h5 className="font-bold text-white mb-1">Fas 2: VAD-Paus (Växlingen)</h5>
                             <p className="text-slate-400">
-                                VAD upptäcker en tystnad > 200ms. Vi skickar omedelbart signalen <code>TurnComplete</code> till Gemini. 
+                                VAD upptäcker en tystnad &gt; 200ms. Vi skickar omedelbart signalen <code>TurnComplete</code> till Gemini. 
                                 <strong>Detta är nyckeln.</strong> Nu slutar vi sända till nätverket och börjar istället buffra mikrofonljudet lokalt i minnet.
                             </p>
                         </div>
