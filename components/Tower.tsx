@@ -182,15 +182,45 @@ const Tower: React.FC<TowerProps> = ({
 
     // --- HELPER: HIGHLIGHT LOGIC ---
     const updateHighlights = (activeKey: string | null) => {
-        if (!activeKey) {
-            // Remove highlights
-            Object.values(audioRefs.current).forEach(el => el?.parentElement?.classList.remove('ring-2', 'ring-indigo-500'));
-            Object.values(logicRefs.current).forEach(el => el?.parentElement?.classList.remove('ring-2', 'ring-indigo-500'));
-            return;
-        }
+        // Clear all highlights first
+        Object.values(audioRefs.current).forEach(el => (el as HTMLElement | null)?.parentElement?.classList.remove('ring-2', 'ring-indigo-500'));
+        Object.values(logicRefs.current).forEach(el => (el as HTMLElement | null)?.parentElement?.classList.remove('ring-2', 'ring-indigo-500'));
+
+        if (!activeKey) return;
+
+        // Simple mapping based on ID
+        let target: HTMLElement | null = null;
         
-        // Simple mapping
-        // We rely on the parent elements of the refs which are the clickable divs
+        // Audio Refs check
+        if (activeKey === 'RMS') target = audioRefs.current.rmsRef;
+        if (activeKey === 'SR') target = audioRefs.current.srRef;
+        if (activeKey === 'CTX') target = audioRefs.current.ctxRef;
+        if (activeKey === 'FRM') target = audioRefs.current.framesRef;
+        if (activeKey === 'TIME') target = audioRefs.current.timeRef;
+
+        // Logic Refs check
+        if (activeKey === 'VAD') target = logicRefs.current.vadRef;
+        if (activeKey === 'THR') target = logicRefs.current.thrRef;
+        if (activeKey === 'SPK') target = logicRefs.current.spkRef;
+        if (activeKey === 'SIL') target = logicRefs.current.silRef;
+        if (activeKey === 'GAP') target = logicRefs.current.gapRef;
+        if (activeKey === 'BUF') target = logicRefs.current.bufRef;
+        if (activeKey === 'MODE') target = logicRefs.current.modeRef;
+        if (activeKey === 'LTC') target = logicRefs.current.latRef;
+        if (activeKey === 'BSY') target = logicRefs.current.bsyRef;
+        if (activeKey === 'Q_LN') target = logicRefs.current.qlnRef;
+        if (activeKey === 'ASLP') target = logicRefs.current.aslpRef;
+        if (activeKey === 'V_ST') target = logicRefs.current.vstRef;
+        if (activeKey === 'CN_B') target = logicRefs.current.cnbRef;
+        if (activeKey === 'INF') target = logicRefs.current.infRef;
+        if (activeKey === 'L_TS') target = logicRefs.current.ltsRef;
+        if (activeKey === 'V_AVG') target = logicRefs.current.avgRef;
+        if (activeKey === 'RTT') target = logicRefs.current.rttRef;
+        if (activeKey === 'VOL') target = logicRefs.current.volRef;
+
+        if (target && target.parentElement) {
+            target.parentElement.classList.add('ring-2', 'ring-indigo-500');
+        }
     };
 
     useEffect(() => { updateHighlights(selectedInfo); }, [selectedInfo]);
